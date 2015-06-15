@@ -1,0 +1,41 @@
+body {
+ background: #CEF6F5;
+ }
+ 
+ 
+form {
+  
+  margin: 0 auto;
+  margin-top: 3em;
+  width: 50%;
+ }
+
+table {
+	border: 1px solid blue;
+	margin: 0 auto;
+	padding: 3px;
+}
+
+td, th {
+	border: 1px solid blue;
+	padding: 3px;
+	width: 10%;
+}
+
+
+
+
+ .texto {
+   margin: .5em;   
+   margin-left: 1em;
+ }
+ .cuadro {
+   margin-left: 2em;
+   margin-bottom: 1.3em;
+ }
+ 
+ footer {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1em;
+ }
