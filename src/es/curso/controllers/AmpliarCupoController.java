@@ -1,5 +1,6 @@
 package es.curso.controllers;
 
+import es.curso.model.entity.Tarjeta;
 
 public interface AmpliarCupoController {
 

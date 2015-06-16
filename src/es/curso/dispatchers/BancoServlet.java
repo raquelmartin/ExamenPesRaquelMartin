@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.curso.controllers.ejb.DarAltaTarjetaControllerEjb;
+import es.curso.model.entity.Tarjeta;
 
 /**
  * Servlet implementation class TiendaServlet
@@ -66,14 +67,14 @@ public class BancoServlet extends HttpServlet {
 		
 		switch(action){
 			case "altaTarjeta": // recuperar los datos tecleados en formulario
-				String id = request.getParameter("id");
-				String numero = request.getParameter("numero");
-				String cupoMaximo = request.getParameter("cupoMaximo");
-				String saldoDisponible = request.getParameter("saldoDisponible");
+				int id = Integer.parseInt(request.getParameter("id"));
+				int numero = Integer.parseInt(request.getParameter("numero"));
+				int cupoMaximo = Integer.parseInt(request.getParameter("cupoMaximo"));
+				int saldoDisponible = Integer.parseInt(request.getParameter("saldoDisponible"));
 				String tipo = request.getParameter("tipo");
-				String numComprobacion = request.getParameter("numComprobacion");
-				String contrasenha = request.getParameter("contrasenha");
-				String bloqueada = request.getParameter("bloqueada");
+				int numComprobacion =  Integer.parseInt(request.getParameter("numComprobacion"));
+				int contrasenha = Integer.parseInt(request.getParameter("contrasenha"));
+				boolean bloqueada = request.getParameter("bloqueada").equals("si");
 				
 				Tarjeta tarjeta = new Tarjeta 
 						(0, numero, cupoMaximo, saldoDisponible, tipo, numComprobacion, contrasenha, bloqueada);

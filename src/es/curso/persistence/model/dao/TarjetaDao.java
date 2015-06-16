@@ -2,7 +2,8 @@ package es.curso.persistence.model.dao;
 
 import java.util.ArrayList;
 
-import es.curso.controllers.Tarjeta;
+import es.curso.model.entity.Tarjeta;
+
 
 public interface TarjetaDao {
 	
@@ -10,9 +11,7 @@ public interface TarjetaDao {
 	
 	public ArrayList<Tarjeta> findAll();
 
-	void create(es.curso.persistence.model.dao.jdbc.Tarjeta tarjeta);
-	
-	
-	
+
 
 }
+

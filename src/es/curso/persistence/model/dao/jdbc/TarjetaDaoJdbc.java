@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import es.curso.model.entity.Tarjeta;
 import es.curso.persistence.model.dao.TarjetaDao;
 
 public class TarjetaDaoJdbc implements TarjetaDao{
@@ -30,12 +31,12 @@ public class TarjetaDaoJdbc implements TarjetaDao{
 				cx.prepareStatement	("INSERT INTO tarjetacredito VALUES (?,?,?,?,?,?,?,?)");
 				// 2.1 Insertar los datos de cliente en los ?
 				ps.setInt(1, 0); // el id lo genera la base de datos automaticamente, ponemos 0 por poner algo
-				ps.setString(2, tarjeta.getNumero()); // nombre es Varchar en SQL, String para Java
+				ps.setInt(2, tarjeta.getNumero()); // nombre es Varchar en SQL, String para Java
 				ps.setInt(3, tarjeta.getCupoMaximo()); 
 				ps.setInt(4, tarjeta.getSaldoDisponible()); 
 				ps.setString(5, tarjeta.getTipo()); 
 				ps.setInt(6, tarjeta.getNumComprobacion());
-				ps.setString(7, tarjeta.getContrasenha()); 
+				ps.setInt(7, tarjeta.getContrasenha()); 
 				ps.setBoolean(8, tarjeta.isBloqueada()); 
 				
 				
@@ -69,7 +70,7 @@ public class TarjetaDaoJdbc implements TarjetaDao{
 	}
 
 	@Override
-	public ArrayList<es.curso.controllers.Tarjeta> findAll() {	
+	public ArrayList<Tarjeta> findAll() {	
 		ArrayList<Tarjeta> tarjetas = new ArrayList<Tarjeta>();
 		try {
 			// 1. abrir la conexion
@@ -86,12 +87,12 @@ public class TarjetaDaoJdbc implements TarjetaDao{
 				Tarjeta tarjetaTemporal = new Tarjeta();
 				// codigo para traspasar de la consulta(resultSet) hacia el clienteTemporal
 				tarjetaTemporal.setId(consulta.getInt("id"));// lo que esta entre comillas es el nombre del atributo de la base de datos
-				tarjetaTemporal.setNumero(consulta.getString("numero"));
+				tarjetaTemporal.setNumero(consulta.getInt("numero"));
 				tarjetaTemporal.setCupoMaximo(consulta.getInt("cupoMaximo"));
 				tarjetaTemporal.setSaldoDisponible(consulta.getInt("saldoDisponible"));
 				tarjetaTemporal.setTipo(consulta.getString("tipo"));
 				tarjetaTemporal.setNumComprobacion(consulta.getInt("numComprobacion"));
-				tarjetaTemporal.setContrasenha(consulta.getString("contrasenha"));
+				tarjetaTemporal.setContrasenha(consulta.getInt("contrasenha"));
 				tarjetaTemporal.setBloqueada(consulta.getBoolean("bloqueada"));
 				
 				tarjetas.add(tarjetaTemporal);
@@ -105,7 +106,7 @@ public class TarjetaDaoJdbc implements TarjetaDao{
 		
 		
 		finally {
-		ArrayList<es.curso.controllers.Tarjeta> tarjeta = null;
+		ArrayList<Tarjeta> tarjeta = null;
 		// 4. cerrar la conexion
 		return tarjeta;
 		}
@@ -141,14 +142,7 @@ public class TarjetaDaoJdbc implements TarjetaDao{
 		
 	}
 
-	@Override
-	public void create(es.curso.controllers.Tarjeta tarjeta) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
-	
 
 	
 	
