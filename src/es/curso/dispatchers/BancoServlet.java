@@ -52,7 +52,24 @@ public class BancoServlet extends HttpServlet {
 				rd= request.getRequestDispatcher("/jsp/altaTarjeta.jsp");
 				rd.forward(request, response);
 				break;
-		
+			case "ampliarCupo": 
+				rd= request.getRequestDispatcher("/jsp/ampliarCupo.jsp");
+				rd.forward(request, response);
+				break;
+				
+			
+			case "bloquearTarjeta":
+				rd= request.getRequestDispatcher("/jsp/bloquearTarjeta.jsp");
+				rd.forward(request, response);
+				break;
+				
+			case "enviarPago":
+				rd= request.getRequestDispatcher("/jsp/enviarPago.jsp");
+				rd.forward(request, response);
+				break;	
+			
+			
+				
 			
 		}	
 	}
