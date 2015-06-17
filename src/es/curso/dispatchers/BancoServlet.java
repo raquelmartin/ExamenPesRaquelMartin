@@ -96,16 +96,47 @@ public class BancoServlet extends HttpServlet {
 				Tarjeta tarjeta = new Tarjeta 
 						(0, numero, cupoMaximo, saldoDisponible, tipo, numComprobacion, contrasenha, bloqueada);
 				
-				// se invocara al controlador adecuado
+				
 				DarAltaTarjetaControllerEjb controlador= new DarAltaTarjetaControllerEjb();
 				controlador.agregar(tarjeta);
 				rd = request.getRequestDispatcher("/index.jsp");
 				rd.forward(request, response);
 				break;
-				
+			case "buscarPorNumeroTarjeta":
+				String numTarjeta=new String(request.getParameter("numeroTarjeta"));
+				short contrasenhaCupo= Short.parseShort(request.getParameter("contrasenha"));
+				int cupoDispon=Integer.parseInt(request.getParameter("ampliarCupo"));
+				ampliarCupoEjb ampliarCupo=new ampliarCupoEjb();
+
+				ampliarCupo.buscarNumeroTarjeta(numTarjeta, contrasenhaCupo, cupoDispon);
+				rd=request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
+				break;
+			case "bloquearTarjeta":
+				String numTarjetaBloque=new String(request.getParameter("numeroTarjeta"));
+				short contrasenhaBloque= Short.parseShort(request.getParameter("contrasenha"));
+				BloquearTarjetaEjb bloquearTarjeta=new BloquearTarjetaEjb();
+				bloquearTarjeta.buscarTarjetaBloquear(numTarjetaBloque, contrasenhaBloque);
+				rd=request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
+				break;
+			case "pagarConTarjeta":
+				String numTarjetaPago=new String("numeroTarjeta");
 			
-				
+				short contrasenhaPago= Short.parseShort(request.getParameter("contrasenha"));
+				String numComprobaPago=new String("numeroComproba");
+				int importePago=Integer.parseInt(request.getParameter("importePago"));
+				Tarjeta tarjetaPagar=new Tarjeta();
+				ComprobarPagoEjb comprobarPago=new ComprobarPagoEjb();
+				tarjetaPagar=comprobarPago.comprobarPago(numTarjetaPago, contrasenhaPago, 
+						numComprobaPago, importePago);
+				rd=request.getRequestDispatcher("/index.jsp");
+				rd.forward(request, response);
+				break;
 		}
 	}
 
 }
+				
+			
+	
